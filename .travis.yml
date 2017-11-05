@@ -1,0 +1,23 @@
+language: go
+
+go:
+- 1.8
+
+before_script:
+- go get
+
+script:
+- go test
+
+before_deploy:
+- mkdir -p release
+- GOOS=linux  GOARCH=amd64 go build -o release/docker-entry
+
+deploy:
+  provider: releases
+  api_key:
+    secure: PSxfsr4XgZU4Dixmbxp4ezXbemmo88J4OS1J2HATFKHiZV45jVIT9xPCYKEg4vD/H3TTF5KeyVEsfMU+xHWz31KJ6GWtWLd8AdxstsP5jEGyGY06ubYI37ImSVcfuANFNHqqgCiOnv5BGzCsafh2NDzK8jF0drSvfj+IMMjsUz96wUX33XIx2Y63Wk8yV6oil5vgeWDX1ZgVI1snE3nnhoCExv/0py2itSnEPKeLRpu1XAPljbpDUpQj3oPOgW/xLkppneVt8tu+GPOsiMbfdOcH+x9N225c6kxCuxI28Sa1ojLdBcbNADfhUlkOfzYKBvwwYK0DUZYjXhvgDIuvS5hmLdDHdOg6FL0jTiEf0awlcNvu3fDknMA+E3yrK0DmCn2wIcBNsAtTrkiFSEnhUnVsExlIFcPdFehCBZsWRTYgg4eV+MuR3h+FjmtX2H+AtMpy4stAX9T0M1mtuvT6WPphupRzzfV1KTXrVppIm2gTa89oPL7Ga7BzF08nhcZMl1u/1CJ8iH/i3OjQl1/6CN+6I66Jb0eEQlRqc+X4WG42SjJnklpfIBJD8G4KTICYsbcXEmkpjYmgwyVoY3k4AP++1K8Yz7BPOGMMkd0znulG1RfAIzSDLrGiKbXO4WatkqtMkRaLaNmuUN2quMrt3O9UuTMNxbPIwiLOZjYnwSI=
+  file: release/docker-entry
+  on:
+    repo: ContainX/docker-entry
+    tags: true

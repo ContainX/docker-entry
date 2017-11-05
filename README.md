@@ -1,4 +1,7 @@
 # docker-entry
+
 Secrets, Configuration and Docker Exec - Ridiculously Simple!
 
-#### Coming Soon!
+## Quick Start
+
+This is currently in active development and will be released and documented soon!
